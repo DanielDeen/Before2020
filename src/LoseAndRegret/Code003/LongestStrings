@@ -1,0 +1,8 @@
+package LoseAndRegret.Code003;
+
+public class LongestStrings {
+
+    public static void main(String[] args) {
+        System.out.println("hello");
+    }
+}
