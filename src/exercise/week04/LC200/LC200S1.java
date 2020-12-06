@@ -8,12 +8,17 @@ package exercise.week04.LC200;
 
 public class LC200S1 {
     public int numIslands(char[][] grid) {
+
+        if (grid == null || grid.length == 0) return 0;
+
         int count = 0;
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
+        int nr = grid.length;
+        int nc = grid[0].length;
+        for (int i = 0; i < nr; ++i) {
+            for (int j = 0; j < nc; ++j) {
                 if (grid[i][j] == '1') {
+                    ++count;
                     dfs(grid, i, j);
-                    count++;
                 }
             }
         }
