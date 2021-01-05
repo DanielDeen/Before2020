@@ -1,21 +1,20 @@
-package exercise.week10.LC239;
+package exercise.week11.LC239;
 
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * @description: 239.滑动窗口最大值
  * @author: Daniel Deen
- * @create: 2020-12-27 22:19
+ * @create: 2021-01-02 19:21
  */
 
 public class LC239S1 {
     public static void main(String[] args) {
         System.out.println(Arrays.toString(new LC239S1().maxSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3)));
     }
+
     public int[] maxSlidingWindow(int[] nums, int k) {
-        if (nums == null || nums.length < 2) return nums;
+        if (nums.length <= k) return new int[]{Arrays.stream(nums).max().getAsInt()};
         int[] res = new int[nums.length - k + 1];
         Deque<Integer> queue = new LinkedList<>();
         for (int i = 0; i < nums.length; i++) {

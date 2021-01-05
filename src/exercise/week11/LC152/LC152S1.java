@@ -1,7 +1,5 @@
 package exercise.week11.LC152;
 
-import com.sun.jmx.snmp.SnmpNull;
-
 /**
  * @description: 152.乘积最大子数组
  * @author: Daniel Deen
