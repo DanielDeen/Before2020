@@ -32,4 +32,22 @@ public class LC228S1 {
         }
         return res;
     }
+
+    public List<String> summaryRanges1(int[] nums) {
+        List<String> list = new ArrayList<>();
+        if (nums == null || nums.length == 0) return list;
+        int index = 0;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == nums[i-1] + 1) continue;
+            StringBuilder sb = new StringBuilder().append(nums[index]);
+            if (index != i-1) sb.append("->").append(nums[i-1]);
+            list.add(sb.toString());
+            index = i;
+        }
+        StringBuilder sb = new StringBuilder().append(nums[index]);
+        if (index != nums.length -1) sb.append("->").append(nums[nums.length -1]);
+        list.add(sb.toString());
+        return list;
+    }
+
 }
