@@ -1,5 +1,6 @@
 package exercise.week15.LC1371;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,12 +12,35 @@ import java.util.Map;
 
 public class LC1372S1 {
     public int findTheLongestSubstring(String s) {
-        int res = 0;
-        Map<Character, Integer> map = new HashMap<>();
-        for (int i = 0; i < s.length(); i++) {
+        int len = s.length();
+        int[] pos = new int[32];
+        Arrays.fill(pos, -1);
+        int res = 0, status = 0;
+        pos[0] = 0;
+        for (int i = 0; i < len; i++) {
             char c = s.charAt(i);
-            if (isVowel(c)) map.put(c, map.getOrDefault(c, 0) + 1);
-
+            switch (c) {
+                case 'a':
+                    status ^= 1;
+                    break;
+                case 'e':
+                    status ^= 2;
+                    break;
+                case 'i':
+                    status ^= 4;
+                    break;
+                case 'o':
+                    status ^= 8;
+                    break;
+                case 'u':
+                    status ^= 16;
+                    break;
+            }
+            if (pos[status] >= 0) {
+                res = Math.max(res, i + 1 - pos[status]);
+            } else {
+                pos[status] = i + 1;
+            }
         }
         return res;
     }
