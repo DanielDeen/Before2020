@@ -14,8 +14,7 @@ public class LC1319S1 {
             return -1;
         }
         UnionFind unionFind = new UnionFind(n);
-        for (int[] conn :
-                connections) {
+        for (int[] conn :connections) {
             unionFind.unite(conn[0], conn[1]);
         }
         return unionFind.setCount - 1;
@@ -73,7 +72,5 @@ public class LC1319S1 {
 
             return x == y;
         }
-
-
     }
 }
