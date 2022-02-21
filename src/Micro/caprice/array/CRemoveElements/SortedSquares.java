@@ -23,13 +23,10 @@ public class SortedSquares {
 		int index = right;
 		while (left <= right) {
 			if (Math.abs(nums[left]) > Math.abs(nums[right])) {
-				res[index] = nums[left] * nums[left];
-				left++;
+				res[index--] = nums[left] * nums[left++];
 			} else {
-				res[index] = nums[right] * nums[right];
-				right--;
+				res[index--] = nums[right] * nums[right--];
 			}
-			index--;
 		}
 
 		return res;
