@@ -1,7 +1,5 @@
 package exercise.week11.LC605;
 
-import sun.font.DelegatingShape;
-
 /**
  * @description: 605.种花的问题
  * @author: Daniel Deen
