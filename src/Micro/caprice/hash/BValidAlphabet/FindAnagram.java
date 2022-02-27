@@ -1,6 +1,7 @@
 package Micro.caprice.hash.BValidAlphabet;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -38,5 +39,26 @@ public class FindAnagram {
 			}
 		}
 		return true;
+	}
+
+
+	public List<Integer> findAnagrams1(String s, String p) {
+		List<Integer> ans = new ArrayList<>();
+		int[] letters1 = new int[26];
+		int[] letters2 = new int[26];
+		for (char c : p.toCharArray()) {
+			letters2[c - 'a']++;
+		}
+
+		for (int l = 0, r = 0; r < s.length(); r++) {
+			letters1[s.charAt(r) - 'a']++;
+			if (r - l + 1 > p.length()) {
+				letters1[s.charAt(l++) - 'a']--;
+			}
+			if (Arrays.equals(letters1, letters2)) {
+				ans.add(l);
+			}
+		}
+		return ans;
 	}
 }
