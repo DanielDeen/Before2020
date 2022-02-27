@@ -53,6 +53,7 @@ public class Intersection {
 		for (int s : list) {
 			ans[index++] = s;
 		}
-		return ans;
+
+		return list.stream().mapToInt(i->i).toArray();
 	}
 }
