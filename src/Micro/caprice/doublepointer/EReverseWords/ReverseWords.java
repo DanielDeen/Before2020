@@ -62,4 +62,9 @@ public class ReverseWords {
 
 		return sb;
 	}
+
+	// 空间复杂度为1的方法, Java 好像没有……
+	public String reverseWords1(String s) {
+		return null;
+	}
 }
