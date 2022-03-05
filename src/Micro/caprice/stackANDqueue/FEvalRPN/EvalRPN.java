@@ -18,17 +18,18 @@ public class EvalRPN {
 		Stack<Integer> stack = new Stack<>();
 		for (String token : tokens) {
 			if (isOperator(token)) {
-				int res = stack.pop();
+				int num2 = stack.pop();
+				int num1 = stack.pop();
 				if (Objects.equals(token, "+")) {
-					res += stack.pop();
+					num1 += num2;
 				} else if (Objects.equals(token, "-")) {
-					res -= stack.pop();
+					num1 -= num2;
 				} else if (Objects.equals(token, "*")) {
-					res *= stack.pop();
+					num1 *= num2;
 				} else if (Objects.equals(token, "/")) {
-					res /= stack.pop();
+					num1 /= num2;
 				}
-				stack.push(res);
+				stack.push(num1);
 			} else {
 				stack.push(Integer.parseInt(token));
 			}
