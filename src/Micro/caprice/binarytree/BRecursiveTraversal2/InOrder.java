@@ -1,4 +1,4 @@
-package Micro.caprice.binarytree.CRecursiveTraversal2;
+package Micro.caprice.binarytree.BRecursiveTraversal2;
 
 import java.util.ArrayList;
 import java.util.List;
