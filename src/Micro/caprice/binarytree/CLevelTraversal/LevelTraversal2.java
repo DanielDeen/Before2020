@@ -47,6 +47,23 @@ public class LevelTraversal2 {
 	}
 
 	private void traversal(TreeNode node, int deep) {
+		if (node == null) {
+			return;
+		}
 
+		deep++;
+		if (list.size() < deep) {
+			list.add(new ArrayList<>());
+		}
+
+		list.get(deep - 1).add(node.val);
+		if (node.left != null) {
+			traversal(node.left, deep);
+		}
+
+		if (node.right != null) {
+			traversal(node.right, deep);
+		}
 	}
+
 }
