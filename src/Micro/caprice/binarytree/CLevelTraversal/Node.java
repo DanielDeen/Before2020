@@ -1,16 +1,16 @@
 package Micro.caprice.binarytree.CLevelTraversal;
 
-import java.util.List;
-
 /**
  * @program Before2020
- * @description: Node
+ * @description: node
  * @author: ding
- * @create: 2022/03/21 00:16
+ * @create: 2022/03/21 00:28
  */
 public class Node {
 	public int val;
-	public List<Node> children;
+	public Node left;
+	public Node right;
+	public Node next;
 
 	public Node() {}
 
@@ -18,8 +18,10 @@ public class Node {
 		val = _val;
 	}
 
-	public Node(int _val, List<Node> _children) {
+	public Node(int _val, Node _left, Node _right, Node _next) {
 		val = _val;
-		children = _children;
+		left = _left;
+		right = _right;
+		next = _next;
 	}
 }

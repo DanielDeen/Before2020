@@ -12,23 +12,23 @@ import java.util.Queue;
  * @create: 2022/03/21 00:16
  */
 public class NArrayLevelOrderTraversal {
-	public List<List<Integer>> levelOrder(Node root) {
+	public List<List<Integer>> levelOrder(Node1 root) {
 		List<List<Integer>> list = new ArrayList<>();
 		if (root == null) {
 			return list;
 		}
 
-		Queue<Node> queue = new LinkedList<>();
+		Queue<Node1> queue = new LinkedList<>();
 		queue.add(root);
 
 		while (!queue.isEmpty()) {
 			int len = queue.size();
 			List<Integer> child = new ArrayList<>();
 			while (len > 0) {
-				Node tmpNode = queue.poll();
-				child.add(tmpNode.val);
-				if (tmpNode.children.size() > 0) {
-					queue.addAll(tmpNode.children);
+				Node1 tmpNode1 = queue.poll();
+				child.add(tmpNode1.val);
+				if (tmpNode1.children.size() > 0) {
+					queue.addAll(tmpNode1.children);
 				}
 				len--;
 			}
