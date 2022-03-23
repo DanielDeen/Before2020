@@ -9,13 +9,13 @@ import java.util.Stack;
  * @create: 2022/03/22 22:17
  */
 public class InvertTree {
-	public TreeNode invertTree(TreeNode root) {
+	public TreeNode1 invertTree(TreeNode1 root) {
 		if (root == null) {
 			return null;
 		}
 
-		TreeNode left = invertTree(root.left);
-		TreeNode right = invertTree(root.right);
+		TreeNode1 left = invertTree(root.left);
+		TreeNode1 right = invertTree(root.right);
 
 		root.left = right;
 		root.right = left;
@@ -23,15 +23,15 @@ public class InvertTree {
 		return root;
 	}
 
-	public TreeNode invertTree1(TreeNode root) {
+	public TreeNode1 invertTree1(TreeNode1 root) {
 		if (root == null) {
 			return null;
 		}
 
-		Stack<TreeNode> stack = new Stack<>();
+		Stack<TreeNode1> stack = new Stack<>();
 		stack.push(root);
 		while (!stack.isEmpty()) {
-			TreeNode tmpNode = stack.pop();
+			TreeNode1 tmpNode = stack.pop();
 			swap(tmpNode);
 			if (tmpNode.right != null) {
 				stack.push(tmpNode.right);
@@ -43,8 +43,8 @@ public class InvertTree {
 		return root;
 	}
 
-	private void swap(TreeNode node) {
-		TreeNode tmpNode = node.left;
+	private void swap(TreeNode1 node) {
+		TreeNode1 tmpNode = node.left;
 		node.left = node.right;
 		node.right = tmpNode;
 	}
