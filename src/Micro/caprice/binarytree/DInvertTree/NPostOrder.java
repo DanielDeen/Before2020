@@ -5,21 +5,23 @@ import java.util.List;
 
 /**
  * @program Before2020
- * @description: 589. N 叉树的前序遍历
+ * @description: 590. N 叉树的后序遍历
  * @author: ding
- * @create: 2022/03/23 23:50
+ * @create: 2022/03/23 23:58
  */
-public class NPreOrder {
+public class NPostOrder {
 	List<Integer> list = new ArrayList<>();
 
-	public List<Integer> preorder(Node root) {
+	public List<Integer> postorder(Node root) {
 		if (root == null) {
 			return list;
 		}
-		list.add(root.val);
+
 		for (Node node : root.children) {
-			preorder(node);
+			postorder(node);
 		}
+		list.add(root.val);
+
 		return list;
 	}
 }
