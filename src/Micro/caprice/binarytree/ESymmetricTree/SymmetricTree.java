@@ -14,34 +14,23 @@ import java.util.Queue;
 public class SymmetricTree {
 	public boolean isSymmetric(TreeNode root) {
 		if (root == null) {
+			return true;
+		}
+
+		return compare(root.left, root.right);
+	}
+
+	private boolean compare(TreeNode left, TreeNode right) {
+		if (left == null && right != null) {
 			return false;
+		} else if (left != null && right == null) {
+			return false;
+		} else if (left == null && right == null){
+			return true;
+		} else if (left.val != right.val) {
+			return false;
+		} else {
+			return compare(left.left, right.right) && compare(left.right, right.left);
 		}
-		Queue<TreeNode> queue = new LinkedList<>();
-		queue.add(root);
-		while (!queue.isEmpty()) {
-			int len = queue.size();
-			int left = 0;
-			int right = queue.size() - 1;
-			List<Integer> list = new ArrayList<>();
-			while (len > 0) {
-				TreeNode node = queue.poll();
-				list.add(node.val);
-				if (node.left != null) {
-					queue.add(node.left);
-				}
-				if (node.right != null) {
-					queue.add(node.right);
-				}
-				len--;
-			}
-			while (left <= right) {
-				if (list.get(left) != list.get(right)) {
-					return false;
-				}
-				left++;
-				right--;
-			}
-		}
-		return true;
 	}
 }
