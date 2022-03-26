@@ -1,8 +1,6 @@
 package Micro.caprice.binarytree.ESymmetricTree;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 /**
@@ -25,12 +23,40 @@ public class SymmetricTree {
 			return false;
 		} else if (left != null && right == null) {
 			return false;
-		} else if (left == null && right == null){
+		} else if (left == null && right == null) {
 			return true;
 		} else if (left.val != right.val) {
 			return false;
 		} else {
 			return compare(left.left, right.right) && compare(left.right, right.left);
 		}
+	}
+
+
+	public boolean isSymmetric1(TreeNode root) {
+		if (root == null) {
+			return true;
+		}
+
+		Queue<TreeNode> queue = new LinkedList<>();
+		queue.offer(root.left);
+		queue.offer(root.right);
+		while (!queue.isEmpty()) {
+			TreeNode left = queue.poll();
+			TreeNode right = queue.poll();
+			if (left == null && right == null) {
+				continue;
+			}
+
+			if (left == null || right == null || (left.val != right.val)) {
+				return false;
+			}
+
+			queue.offer(left.left);
+			queue.offer(right.right);
+			queue.offer(left.right);
+			queue.offer(right.left);
+		}
+		return true;
 	}
 }
