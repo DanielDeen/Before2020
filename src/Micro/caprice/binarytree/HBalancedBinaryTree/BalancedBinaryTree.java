@@ -8,22 +8,29 @@ package Micro.caprice.binarytree.HBalancedBinaryTree;
  */
 public class BalancedBinaryTree {
 	public boolean isBalanced(TreeNode root) {
-		if (root == null) {
-			return true;
-		}
-
-		int leftDepth = getDepth(root.left);
-		int rightDepth = getDepth(root.right);
-
-		return Math.abs(leftDepth - rightDepth) <= 1;
+		return getDepth(root) != -1;
 	}
 
+	// 递归法
 	private int getDepth(TreeNode node) {
-		int depth = 0;
-		while (node != null) {
-			node = node.left;
-			depth++;
+		if (node == null) {
+			return 0;
 		}
-		return depth;
+		int leftDepth = getDepth(node.left);
+		if (leftDepth == -1) {
+			return -1;
+		}
+
+		int rightDepth = getDepth(node.right);
+		if (rightDepth == -1) {
+			return -1;
+		}
+
+
+		if (Math.abs(leftDepth - rightDepth) > 1) {
+			return -1;
+		}
+
+		return Math.max(leftDepth, rightDepth) + 1;
 	}
 }
