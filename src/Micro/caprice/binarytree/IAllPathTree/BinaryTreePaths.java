@@ -29,7 +29,7 @@ public class BinaryTreePaths {
 
 	private void findPath(String path, TreeNode node) {
 		if (node.left == null && node.right == null) {
-			String leafPath = path +"->" + node.val;
+			String leafPath = path + "->" + node.val;
 			list.add(leafPath);
 			return;
 		}
@@ -42,5 +42,49 @@ public class BinaryTreePaths {
 			String rightPath = path + "->" + node.val;
 			findPath(rightPath, node.right);
 		}
+	}
+
+
+	// 递归法
+	public List<String> binaryTreePaths1(TreeNode root) {
+		List<Integer> list = new ArrayList<>();
+		List<String> res = new ArrayList<>();
+
+		if (root == null) {
+			return res;
+		}
+
+		traversal(root, list, res);
+
+		return res;
+	}
+
+	private void traversal(TreeNode node, List<Integer> list, List<String> res) {
+		list.add(node.val);
+		if (node.left == null && node.right == null) {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < list.size(); i++) {
+				if (i == list.size() - 1) {
+					sb.append(list.get(i));
+				} else {
+					sb.append(list.get(i)).append("->");
+				}
+			}
+			res.add(sb.toString());
+		}
+
+		if (node.left != null) {
+			traversal(node.left, list, res);
+			list.remove(list.size() - 1);
+		}
+		if (node.right != null) {
+			traversal(node.right, list, res);
+			list.remove(list.size() - 1);
+		}
+	}
+
+	// 迭代法
+	public List<String> binaryTreePaths2(TreeNode root) {
+
 	}
 }
