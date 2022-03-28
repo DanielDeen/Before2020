@@ -11,14 +11,36 @@ import java.util.List;
  */
 public class BinaryTreePaths {
 	List<String> list = new ArrayList<>();
+
 	public List<String> binaryTreePaths(TreeNode root) {
-		if (root == null) {
-			List<String> path = new ArrayList<>();
-			path.add();
-			return list;
+		if (root.left == null && root.right == null) {
+			list.add(String.valueOf(root.val));
 		}
 
+		if (root.left != null) {
+			findPath(String.valueOf(root.val), root.left);
+		}
+		if (root.right != null) {
+			findPath(String.valueOf(root.val), root.right);
+		}
 
+		return list;
+	}
 
+	private void findPath(String path, TreeNode node) {
+		if (node.left == null && node.right == null) {
+			String leafPath = path +"->" + node.val;
+			list.add(leafPath);
+			return;
+		}
+
+		if (node.left != null) {
+			String leftPath = path + "->" + node.val;
+			findPath(leftPath, node.left);
+		}
+		if (node.right != null) {
+			String rightPath = path + "->" + node.val;
+			findPath(rightPath, node.right);
+		}
 	}
 }
