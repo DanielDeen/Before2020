@@ -1,7 +1,6 @@
 package Micro.caprice.binarytree.IAllPathTree;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @program Before2020
@@ -85,6 +84,32 @@ public class BinaryTreePaths {
 
 	// 迭代法
 	public List<String> binaryTreePaths2(TreeNode root) {
+		if (root == null) {
+			return Collections.emptyList();
+		}
 
+		Queue<TreeNode> queue = new LinkedList<>();
+		queue.offer(root);
+		Queue<String> queueString = new LinkedList<>();
+		queueString.offer(String.valueOf(root.val));
+		List<String> list = new ArrayList<>();
+		while (!queue.isEmpty()) {
+			TreeNode tmpNode = queue.poll();
+			String tmpPath = queueString.poll();
+			if (tmpNode.left == null && tmpNode.right == null) {
+				list.add(tmpPath);
+			}
+
+			if (tmpNode.left != null) {
+				queue.offer(tmpNode.left);
+				queueString.offer(tmpPath + "->" + tmpNode.left.val);
+			}
+			if (tmpNode.right != null) {
+				queue.offer(tmpNode.right);
+				queueString.offer(tmpPath + "->" + tmpNode.right.val);
+			}
+
+		}
+		return list;
 	}
 }
