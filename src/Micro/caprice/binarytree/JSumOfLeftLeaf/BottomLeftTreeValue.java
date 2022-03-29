@@ -10,6 +10,8 @@ import java.util.Queue;
  * @create: 2022/03/30 00:48
  */
 public class BottomLeftTreeValue {
+
+	// 迭代
 	public int findBottomLeftValue(TreeNode root) {
 		if (root == null) {
 			return 0;
@@ -34,8 +36,39 @@ public class BottomLeftTreeValue {
 		}
 		return res;
 	}
-	public int findBottomLeftValue1(TreeNode root) {
 
+
+	// 递归
+
+	int maxDepth = 0;
+	int leftValue = 0;
+
+	public int findBottomLeftValue1(TreeNode root) {
+		if (root == null) {
+			return 0;
+		}
+		leftValue = root.val;
+		traversal(root, 0);
+		return leftValue;
+	}
+
+	private void traversal(TreeNode node, int depth) {
+		if (node == null) {
+			return;
+		}
+		if (node.left == null && node.right == null) {
+			if (maxDepth < depth) {
+				maxDepth = depth;
+				leftValue = node.val;
+			}
+		}
+
+		if (node.left != null) {
+			traversal(node.left, depth + 1);
+		}
+		if (node.right != null) {
+			traversal(node.right, depth + 1);
+		}
 	}
 
 }
