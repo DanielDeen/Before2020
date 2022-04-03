@@ -1,4 +1,4 @@
-package Micro.caprice.binarytree.OSearchInSearchTree;
+package Micro.caprice.binarytree.OSearchTree;
 
 import java.util.LinkedList;
 import java.util.Queue;

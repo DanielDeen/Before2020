@@ -1,4 +1,4 @@
-package Micro.caprice.binarytree.OSearchInSearchTree;
+package Micro.caprice.binarytree.OSearchTree;
 
 /**
  * @program Before2020
