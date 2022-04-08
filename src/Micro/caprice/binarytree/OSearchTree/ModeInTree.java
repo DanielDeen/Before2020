@@ -38,4 +38,93 @@ public class ModeInTree {
 		traversal(node.right, map);
 	}
 
+
+	List<Integer> res;
+	int count;
+	int maxCount;
+
+	TreeNode pre;
+
+	public int[] findMode1(TreeNode root) {
+		res = new ArrayList<>();
+		maxCount = 0;
+		count = 0;
+		pre = null;
+
+		traversal(root);
+
+		int[] re = new int[res.size()];
+		for (int i = 0; i < re.length; i++) {
+			re[i] = res.get(i);
+		}
+		return re;
+
+	}
+
+
+	private void traversal(TreeNode root) {
+		if (root == null) {
+			return;
+		}
+
+
+		traversal(root.left);
+
+		int rootValue = root.val;
+		if (pre == null || rootValue != pre.val) {
+			count = 1;
+		} else {
+			count++;
+		}
+
+		if (count > maxCount) {
+			res.clear();
+			res.add(rootValue);
+			maxCount = count;
+		} else if (count == maxCount) {
+			res.add(rootValue);
+		}
+
+		pre = root;
+
+		traversal(root.right);
+	}
+
+
+	public int[] findMode2(TreeNode root) {
+		TreeNode pre = null;
+		Stack<TreeNode> stack = new Stack<>();
+		List<Integer> result = new ArrayList<>();
+
+		int maxCount = 0;
+		int count = 0;
+
+		TreeNode cur = root;
+		while (cur != null || !stack.isEmpty()) {
+			if (cur != null) {
+				stack.push(cur);
+				cur = cur.left;
+			} else{
+				cur = stack.pop();
+				if (pre == null || cur.val != pre.val) {
+					count = 1;
+				} else {
+					count++;
+				}
+
+				if (count > maxCount) {
+					result.clear();
+					result.add(cur.val);
+					maxCount = count;
+				} else if (count == maxCount) {
+					result.add(cur.val);
+				}
+
+				pre = cur;
+				cur = cur.right;
+			}
+		}
+
+		return result.stream().mapToInt(Integer::intValue).toArray();
+	}
 }
