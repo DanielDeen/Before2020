@@ -52,18 +52,19 @@ public class DelNodeInBST {
 		} else if (root.val < key) {
 			root.right = deleteNode1(root.right, key);
 		} else {
+			if (root.left == null) {
+				return root.right;
+			}
 			if (root.right == null) {
 				return root.left;
-			} else if (root.left == null) {
-				return root.right;
-			} else {
-				TreeNode node = root.right;
-				if (node.left != null) {
-					node = node.left;
-				}
-				root.val = node.val;
-				root.right = deleteNode1(root.right, node.val);
 			}
+
+			TreeNode node = root.right;
+			if (node.left != null) {
+				node = node.left;
+			}
+			root.val = node.val;
+			root.right = deleteNode1(root.right, node.val);
 		}
 		return root;
 	}
