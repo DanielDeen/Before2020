@@ -32,4 +32,20 @@ public class CovertToBST {
 		}
 		return root;
 	}
+
+
+	public TreeNode sortedArrayToBST1(int[] nums) {
+		return sort(nums, 0, nums.length);
+	}
+
+	private TreeNode sort(int[] nums, int left, int right) {
+		if (left >= right) {
+			return null;
+		}
+		int mid = left + ((right - left) >> 1);
+		TreeNode root = new TreeNode(nums[mid]);
+		root.left = sort(nums, left, mid);
+		root.right = sort(nums, mid + 1, right);
+		return root;
+	}
 }
