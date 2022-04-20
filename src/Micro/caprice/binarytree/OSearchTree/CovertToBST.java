@@ -1,6 +1,8 @@
 package Micro.caprice.binarytree.OSearchTree;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * @program Before2020
@@ -46,6 +48,50 @@ public class CovertToBST {
 		TreeNode root = new TreeNode(nums[mid]);
 		root.left = sort(nums, left, mid);
 		root.right = sort(nums, mid + 1, right);
+		return root;
+	}
+
+
+	public TreeNode sortedArrayToBST2(int[] nums) {
+		if (nums.length == 0) {
+			return null;
+		}
+
+		TreeNode root = new TreeNode(-1);
+		Queue<TreeNode> nodeQueue = new LinkedList<>();
+		Queue<Integer> leftQueue = new LinkedList<>();
+		Queue<Integer> rightQueue = new LinkedList<>();
+
+		nodeQueue.offer(root);
+
+		leftQueue.offer(0);
+		rightQueue.offer(nums.length - 1);
+
+		while (!nodeQueue.isEmpty()) {
+			TreeNode curNode = nodeQueue.poll();
+			int left = leftQueue.poll();
+			int right = rightQueue.poll();
+
+			int mid = left + ((right - left) >> 1);
+
+			curNode.val = nums[mid];
+
+
+			if (left <= mid - 1) {
+				curNode.left = new TreeNode(-1);
+				nodeQueue.offer(curNode);
+				leftQueue.offer(left);
+				rightQueue.offer(mid - 1);
+			}
+
+			if (right >= mid + 1) {
+				curNode.right = new TreeNode(-1);
+				nodeQueue.offer(curNode.right);
+				leftQueue.offer(mid + 1);
+				rightQueue.offer(right);
+			}
+
+		}
 		return root;
 	}
 }
