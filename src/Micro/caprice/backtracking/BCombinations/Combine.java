@@ -17,6 +17,7 @@ public class Combine {
 
 
 	List<List<Integer>> ans;
+
 	public List<List<Integer>> combine(int n, int k) {
 		ans = new ArrayList<>();
 		backtracking(new LinkedList<>(), n, k, 1);
@@ -29,7 +30,10 @@ public class Combine {
 			return;
 		}
 
-		for (int i = flag; i <= n; i++) {
+
+		// for (int i = flag; i <= n; i++) {
+		// 剪枝操作，获取在集合中至多从那个位置开始遍历
+		for (int i = flag; i <= n - (k - tmp.size()) + 1; i++) {
 			tmp.add(i);
 			backtracking(tmp, n, k, ++flag);
 			tmp.removeLast();
