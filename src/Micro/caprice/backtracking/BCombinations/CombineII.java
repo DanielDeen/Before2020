@@ -23,7 +23,7 @@ public class CombineII {
 	}
 
 	private void backtracking(LinkedList<Integer> tmp, int k, int n, int startIndex) {
-		if (getSum(tmp) > n) {
+		if (getSum(tmp) > n || (tmp.size() > k)) {
 			return;
 		}
 		if ((getSum(tmp) == n) && (tmp.size() == k)) {
