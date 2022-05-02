@@ -16,7 +16,32 @@ public class CombinePhoneNumber {
 	Map<Character, String[]> numberMap;
 	List<String> list;
 
-	String[] letterMap = {" ","*","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+	String[] letterMap = {" ", "*", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+	public List<String> letterCombinations1(String digits) {
+		List<String> list = new ArrayList<>();
+		solve(digits, 0, new StringBuffer(), list);
+		return list;
+	}
+
+	private void solve(String digits, int index, StringBuffer sb, List<String> list) {
+		if (digits.length() == 0) {
+			return;
+		}
+
+		if (index >= digits.length()) {
+			list.add(new String(sb));
+			return;
+		}
+
+		String s = letterMap[digits.charAt(index) - '0'];
+		for (int i = 0; i < s.length(); i++) {
+			sb.append(s.charAt(i));
+			solve(digits, ++index, sb, list);
+			sb.deleteCharAt(sb.length() - 1);
+		}
+	}
+
 
 	public List<String> letterCombinations(String digits) {
 		if (digits.length() == 0) {
