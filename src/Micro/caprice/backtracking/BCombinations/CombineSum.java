@@ -32,7 +32,7 @@ public class CombineSum {
 			return;
 		}
 
-		for (int i = startIndex; i < candidates.length; i++) {
+		for (int i = startIndex; i < candidates.length && sum + candidates[i] <= target; i++) {
 			sum += candidates[i];
 			list.add(candidates[i]);
 			backtracking(candidates, target, res, list, sum, startIndex++);
