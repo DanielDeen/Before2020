@@ -25,6 +25,7 @@ public class Partition {
 			return;
 		}
 
+		// 处理逻辑中，先判断是否是回文；通过组合的方式解决问题！！！！！！！！
 		for (int i = index; i < s.length(); i++) {
 			if (isPalindrome(s, index, i)) {
 				path.add(s.substring(index, i + 1));
