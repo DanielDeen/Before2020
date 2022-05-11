@@ -46,7 +46,6 @@ public class RestoreIpAddresses {
 				break;
 			}
 		}
-
 	}
 
 	public boolean isValid(String s, int start, int end) {
@@ -63,9 +62,7 @@ public class RestoreIpAddresses {
 			if (s.charAt(i) > '9' || s.charAt(i) < '0') {
 				return false;
 			}
-
 			num = num * 10 + (s.charAt(i) - '0');
-
 			if (num > 255) {
 				return false;
 			}
