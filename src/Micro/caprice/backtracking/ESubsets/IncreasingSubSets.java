@@ -31,6 +31,9 @@ public class IncreasingSubSets {
 
 		// 同一层，使用过的数字不能再被使用
 		Map<Integer, Integer> map = new HashMap<>();
+
+		// 使用数组 ！！！
+		int[] used = new int[201];
 		for (int i = index; i < nums.length; i++) {
 			if (list.size() > 0 && (list.get(list.size() - 1) > nums[i])) {
 				continue;
@@ -38,8 +41,12 @@ public class IncreasingSubSets {
 			if (map.getOrDefault(nums[i], 0) >= 1) {
 				continue;
 			}
-
 			map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+
+			if (used[nums[i] + 100] == 1) {
+				continue;
+			}
+			used[nums[i] + 100] = 1;
 			list.add(nums[i]);
 			backtracking(nums, list, i + 1);
 			list.remove(list.size() - 1);
